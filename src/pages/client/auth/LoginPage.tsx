@@ -1,4 +1,4 @@
-import { Checkbox, Form, Input } from "antd";
+import { Checkbox, Form, Input, Spin } from "antd";
 import { useState } from "react";
 import { GoogleOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router";
@@ -14,7 +14,7 @@ const LoginPage = () => {
   const { login } = useAuthStore((state) => state);
   const { handleError } = useMessage();
   const nav = useNavigate();
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (payload: ILoginPayload) => loginApi(payload),
     onError: (error) => {
       handleError(error);
@@ -87,7 +87,7 @@ const LoginPage = () => {
           </Checkbox>
           <Form.Item label={null}>
             <button className="bg-primary duration-300 hover:opacity-75 cursor-pointer mt-4 w-full h-10 rounded-md">
-              Đăng nhập
+              {isPending ? <Spin className="text-white!" /> : "Đăng nhập"}
             </button>
           </Form.Item>
         </Form>
