@@ -36,7 +36,7 @@ const PortingCalculatorFourValve = ({
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [intakeValue, exhaustValve, portType]);
+  }, [intakeValue, exhaustValve, portType, valveType]);
   return (
     <div>
       <Form form={form} layout="vertical">
@@ -46,6 +46,7 @@ const PortingCalculatorFourValve = ({
             placeholder="Nhập kích thước val xả"
             controls={false}
             decimalSeparator=","
+            inputMode="decimal"
           />
         </Form.Item>
         <Form.Item name="intake" label="Kích thước val nạp" required>
@@ -54,6 +55,7 @@ const PortingCalculatorFourValve = ({
             placeholder="Nhập kích thước val nạp"
             controls={false}
             decimalSeparator=","
+            inputMode="decimal"
           />
         </Form.Item>
         <p className="text-primary/80 mb-4">Kết quả thông số</p>

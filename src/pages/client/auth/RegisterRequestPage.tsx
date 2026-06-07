@@ -64,6 +64,7 @@ const RegisterRequestPage = () => {
             ]}
           >
             <Input
+              inputMode="email"
               placeholder="Nhập tài khoản email của bạn"
               className="h-10"
             />

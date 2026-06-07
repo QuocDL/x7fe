@@ -29,6 +29,7 @@ const RonCalculator = () => {
       >
         <InputNumber
           className="w-full!"
+          inputMode="decimal"
           placeholder="Nhập đường kính piston (mm)"
           controls={false}
           decimalSeparator=","
@@ -41,6 +42,7 @@ const RonCalculator = () => {
       >
         <InputNumber
           className="w-full!"
+          inputMode="decimal"
           placeholder="Nhập độ dày của gioăng (mm)"
           controls={false}
           decimalSeparator=","

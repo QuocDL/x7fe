@@ -62,6 +62,7 @@ const LoginPage = () => {
             <Input
               placeholder="Nhập tài khoản email của bạn"
               className="h-10"
+              inputMode="email"
             />
           </Form.Item>
           <Form.Item

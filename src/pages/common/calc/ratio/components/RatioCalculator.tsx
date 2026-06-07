@@ -35,6 +35,7 @@ const RatioCalculator = () => {
         rules={[{ required: true }]}
       >
         <InputNumber
+          inputMode="decimal"
           className="w-full!"
           placeholder="Nhập đường kính piston (mm)"
           controls={false}
@@ -48,6 +49,7 @@ const RatioCalculator = () => {
         rules={[{ required: true }]}
       >
         <InputNumber
+          inputMode="decimal"
           className="w-full!"
           placeholder="Nhập hành trình dên (mm)"
           controls={false}
@@ -62,6 +64,7 @@ const RatioCalculator = () => {
       >
         <InputNumber
           className="w-full!"
+          inputMode="decimal"
           placeholder="Nhập thể tích nước trong buồng đốt"
           controls={false}
           decimalSeparator=","
