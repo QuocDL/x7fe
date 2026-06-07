@@ -1,9 +1,10 @@
+import { LoadingOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
-import { Form, Input, Spin } from "antd";
+import { Form, Input } from "antd";
 import { Link, useNavigate } from "react-router";
-import type { IRequestRegisterPayload } from "../../../common/types/auth";
-import { requestRegisterApi } from "../../../common/services/auth.service";
 import { useMessage } from "../../../common/hooks/useMessage";
+import { requestRegisterApi } from "../../../common/services/auth.service";
+import type { IRequestRegisterPayload } from "../../../common/types/auth";
 
 const RegisterRequestPage = () => {
   const { antdMessage, handleError } = useMessage();
@@ -69,7 +70,11 @@ const RegisterRequestPage = () => {
           </Form.Item>
           <Form.Item label={null}>
             <button className="bg-primary duration-300 hover:opacity-75 cursor-pointer mt-4 w-full h-10 rounded-md">
-              {isPending ? <Spin className="text-white!" /> : "Gửi yêu cầu"}
+              {isPending ? (
+                <LoadingOutlined className="text-lg" />
+              ) : (
+                "Gửi yêu cầu"
+              )}
             </button>
           </Form.Item>
         </Form>

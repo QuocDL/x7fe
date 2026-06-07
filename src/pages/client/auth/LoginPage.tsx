@@ -1,13 +1,13 @@
-import { Checkbox, Form, Input, Spin } from "antd";
-import { useState } from "react";
-import { GoogleOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router";
+import { GoogleOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
-import { loginApi } from "../../../common/services/auth.service";
-import type { ILoginPayload } from "../../../common/types/auth";
-import { useMessage } from "../../../common/hooks/useMessage";
-import { useAuthStore } from "../../../common/stores/useAuthStore";
+import { Checkbox, Form, Input } from "antd";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { roleNavigate } from "../../../common/constants/roleNavigate";
+import { useMessage } from "../../../common/hooks/useMessage";
+import { loginApi } from "../../../common/services/auth.service";
+import { useAuthStore } from "../../../common/stores/useAuthStore";
+import type { ILoginPayload } from "../../../common/types/auth";
 
 const LoginPage = () => {
   const [rememberState, setRememberState] = useState(true);
@@ -82,12 +82,15 @@ const LoginPage = () => {
             checked={rememberState}
             onChange={() => setRememberState(!rememberState)}
           >
-            {" "}
             Ghi nhớ nhớ đăng nhập
           </Checkbox>
           <Form.Item label={null}>
-            <button className="bg-primary duration-300 hover:opacity-75 cursor-pointer mt-4 w-full h-10 rounded-md">
-              {isPending ? <Spin className="text-white!" /> : "Đăng nhập"}
+            <button className="bg-primary  duration-300 hover:opacity-75 cursor-pointer mt-4 w-full h-10 rounded-md">
+              {isPending ? (
+                <LoadingOutlined className="text-lg" />
+              ) : (
+                "Đăng nhập"
+              )}
             </button>
           </Form.Item>
         </Form>
