@@ -1,11 +1,10 @@
 import { Radio } from "antd";
-import Container from "../../../../components/common/Container";
-import PortingCalculatorFourValve from "./components/PortingCalculatorFourValve";
 import { useState } from "react";
+import Container from "../../../../components/common/Container";
+import PortingCalculator from "./components/PortingCalculator";
 
 const PortingCalculatorPage = () => {
-  const [valveType, setValveType] = useState(0);
-  const [portType, setPortType] = useState(0);
+  const [valveType, setValveType] = useState(4);
   return (
     <Container>
       <h2 className="text-2xl font-semibold">Móc hút xả (porting) là gì?</h2>
@@ -32,18 +31,14 @@ const PortingCalculatorPage = () => {
         </div>
 
         <div>
-          <p className="mb-2 text-sm text-white/70">Kiểu đường hút/xả</p>
-          <Radio.Group
-            value={portType}
-            onChange={(e) => setPortType(e.target.value)}
-          >
-            <Radio value={1}>Đường ngắn</Radio>
-            <Radio value={2}>Đường vừa</Radio>
-            <Radio value={3}>Đường dài</Radio>
-          </Radio.Group>
+          <p className="mb-2 text-sm text-white/70">
+            <span className="text-red-500">Lưu ý:</span> đây là thông số tham
+            khảo đến từ X7 Team các bạn có thể khai thác thêm dựa theo nhu cầu
+            và kinh nghiệm!
+          </p>
         </div>
 
-        <PortingCalculatorFourValve valveType={valveType} portType={portType} />
+        <PortingCalculator valveType={valveType} />
 
         <p className="text-white/50">Creating By Lương Chính Quốc.</p>
       </div>

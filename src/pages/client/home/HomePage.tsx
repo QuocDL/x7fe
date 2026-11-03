@@ -1,13 +1,8 @@
-import { useMessage } from "../../../common/hooks/useMessage";
-import { useAuthStore } from "../../../common/stores/useAuthStore";
-
 const HomePage = () => {
-  const { logout } = useAuthStore((state) => state);
-  const { antdMessage } = useMessage();
   return (
-    <div className="bg-bg ">
-      <button onClick={() => logout()}>test</button>
-      <button onClick={() => antdMessage.success("hihi")}>test</button>
+    <div>
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the main landing page for our client application.</p>
     </div>
   );
 };

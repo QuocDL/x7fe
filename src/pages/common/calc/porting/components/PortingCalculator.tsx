@@ -1,42 +1,35 @@
 import { Form, InputNumber } from "antd";
 import { useEffect, useState } from "react";
-import {
-  calculateNormalFourValve,
-  calculateTouringFourValve,
-} from "../utils/CalculatorFourValve";
-
-const PortingCalculatorFourValve = ({
-  valveType,
-  portType,
-}: {
-  valveType: number;
-  portType: number;
-}) => {
+import { calculateFourValve } from "../utils/CalculatorFourValve";
+import { calculateTwoValve } from "../utils/CalculatorTwoValve";
+const inintialResult = {
+  intakeHole: 0,
+  intakeSeat: 0,
+  exhaustHole: 0,
+  exhaustSeat: 0,
+};
+const PortingCalculator = ({ valveType }: { valveType: number }) => {
   const [form] = Form.useForm();
   const intakeValue = Form.useWatch("intake", form);
   const exhaustValve = Form.useWatch("exhaust", form);
-  const [result, setResult] = useState({
-    intakeHole: 0,
-    intakeSeat: 0,
-    exhaustHole: 0,
-    exhaustSeat: 0,
-  });
+  const [result, setResult] = useState(inintialResult);
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (valveType === 4) {
-        if (portType === 3) {
-          const result = calculateTouringFourValve(intakeValue, exhaustValve);
-          setResult(result);
+      if (intakeValue && exhaustValve) {
+        if (valveType === 4) {
+          const res = calculateFourValve(intakeValue, exhaustValve);
+          setResult(res);
+        } else if (valveType === 2) {
+          const res = calculateTwoValve(intakeValue, exhaustValve);
+          setResult(res);
         }
-        if (portType === 2) {
-          const result = calculateNormalFourValve(intakeValue, exhaustValve);
-          setResult(result);
-        }
+      } else {
+        setResult(inintialResult);
       }
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [intakeValue, exhaustValve, portType, valveType]);
+  }, [intakeValue, exhaustValve, valveType]);
   return (
     <div>
       <Form form={form} layout="vertical">
@@ -46,6 +39,7 @@ const PortingCalculatorFourValve = ({
             placeholder="Nhập kích thước val xả"
             controls={false}
             decimalSeparator=","
+            min={0}
             inputMode="decimal"
           />
         </Form.Item>
@@ -55,17 +49,20 @@ const PortingCalculatorFourValve = ({
             placeholder="Nhập kích thước val nạp"
             controls={false}
             decimalSeparator=","
+            min={0}
             inputMode="decimal"
           />
         </Form.Item>
         <p className="text-primary/80 mb-4">Kết quả thông số</p>
         <div className="flex items-center justify-between gap-5">
           <div className="flex-1">
-            <Form.Item label="Móc lỗ xả" className="flex-1">
-              <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
-                {result.exhaustHole || 0}
-              </p>
-            </Form.Item>
+            {valveType !== 2 && (
+              <Form.Item label="Móc lỗ xả" className="flex-1">
+                <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
+                  {result.exhaustHole || 0}
+                </p>
+              </Form.Item>
+            )}
             <Form.Item label="Móc miệng lỗ xả" className="flex-1">
               <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
                 {result.exhaustSeat || 0}
@@ -73,11 +70,13 @@ const PortingCalculatorFourValve = ({
             </Form.Item>
           </div>
           <div className="flex-1">
-            <Form.Item label="Móc lỗ nạp" className="flex-1">
-              <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
-                {result.intakeHole || 0}
-              </p>
-            </Form.Item>
+            {valveType !== 2 && (
+              <Form.Item label="Móc lỗ nạp" className="flex-1">
+                <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
+                  {result.intakeHole || 0}
+                </p>
+              </Form.Item>
+            )}
             <Form.Item label="Móc miệng lỗ nạp" className="flex-1">
               <p className="border h-8 rounded-md flex items-center px-2 border-white/20">
                 {result.intakeSeat || 0}
@@ -90,4 +89,4 @@ const PortingCalculatorFourValve = ({
   );
 };
 
-export default PortingCalculatorFourValve;
+export default PortingCalculator;

@@ -23,23 +23,23 @@ export const navMenu = (role: string) => {
       : []),
     ...(role === "admin" || role === "staff"
       ? [
-          {
-            label: "Cấu hình máy",
-            path: `/${role}/setup-engine`,
-            children: [
-              { label: "Thêm cấu hình", path: `/${role}/setup-engine/create` },
-            ],
-          },
-          {
-            label: `Quản lý danh sách đồ`,
-            path: `/${role}/path`,
-            children: [
-              {
-                label: `Thêm mới`,
-                path: `/${role}/path/create`,
-              },
-            ],
-          },
+          // {
+          //   label: "Cấu hình máy",
+          //   path: `/${role}/setup-engine`,
+          //   children: [
+          //     { label: "Thêm cấu hình", path: `/${role}/setup-engine/create` },
+          //   ],
+          // },
+          // {
+          //   label: `Quản lý danh sách đồ`,
+          //   path: `/${role}/path`,
+          //   children: [
+          //     {
+          //       label: `Thêm mới`,
+          //       path: `/${role}/path/create`,
+          //     },
+          //   ],
+          // },
           {
             label: `Công thức`,
             path: `/${role}/calculator/ratio`,
@@ -48,10 +48,10 @@ export const navMenu = (role: string) => {
                 label: `Tỷ số nén`,
                 path: `/${role}/calculator/ratio`,
               },
-              {
-                label: `Kê chân lò xo`,
-                path: `/${role}/calculator/spring`,
-              },
+              // {
+              //   label: `Kê chân lò xo`,
+              //   path: `/${role}/calculator/spring`,
+              // },
               {
                 label: `Porting val nạp xả`,
                 path: `/${role}/calculator/porting`,
